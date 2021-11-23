@@ -1,5 +1,4 @@
 const contactsOperations = require("../../model/contacts/index");
-const Joi = require("joi");
 
 const updateById = async (req, res, next) => {
   try {
