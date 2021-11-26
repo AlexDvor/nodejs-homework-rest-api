@@ -27,9 +27,14 @@ const JoiSchema = Joi.object({
   phone: Joi.string().min(3).max(30).required(),
 });
 
+const statusJoiSchema = Joi.object({
+  favorite: Joi.boolean().required(),
+});
+
 const Contact = model("contact", contactSchema);
 
 module.exports = {
   Contact,
   JoiSchema,
+  statusJoiSchema,
 };
