@@ -1,14 +1,10 @@
-// const contactsOperations = require("../../model/contacts/index");
 const { Contact } = require("../../models");
 const { NotFound } = require("http-errors");
 
 const updateById = async (req, res, next) => {
   try {
     const { contactId } = req.params;
-    // const result = await contactsOperations.updateContactById(
-    //   contactId,
-    //   req.body
-    // );
+
     const result = await Contact.findByIdAndUpdate(contactId, req.body, {
       new: true,
     });
