@@ -11,9 +11,8 @@ const updateStatusContact = async (req, res, next) => {
       { new: true }
     );
 
-    if (!result) {
-      throw new NotFound(`Contact with id=${contactId} not found`);
-    }
+    if (!result) throw new NotFound(`Contact with id=${contactId} not found`);
+
     res.json({
       data: result,
     });
