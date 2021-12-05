@@ -4,7 +4,7 @@ const { validation, auth } = require("../../middlewares");
 const { users: ctrl } = require("../../controllers");
 const { subJoiSchema } = require("../../schemas");
 
-router.get("/", auth, ctrl.getCurrent);
+router.get("/current", auth, ctrl.getCurrent);
 router.patch(
   "/:userId/subscription",
   validation(subJoiSchema),
