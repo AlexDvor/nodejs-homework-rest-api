@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const { validation, auth } = require("../../middlewares/index");
-const { auth: ctrlAuth } = require("../../controllers/index");
+const { auth: ctrl } = require("../../controllers/index");
 const { registerJoiSchema, loginJoiSchema } = require("../../schemas");
 
-router.post("/signup", validation(registerJoiSchema), ctrlAuth.register);
-router.post("/login", validation(loginJoiSchema), ctrlAuth.login);
-router.post("/logout", auth, ctrlAuth.logout);
+router.post("/signup", validation(registerJoiSchema), ctrl.register);
+router.post("/login", validation(loginJoiSchema), ctrl.login);
+router.post("/logout", auth, ctrl.logout);
 
 module.exports = router;
