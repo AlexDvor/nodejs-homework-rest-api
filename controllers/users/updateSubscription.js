@@ -1,19 +1,20 @@
-const { Contact } = require("../../models");
+const { User } = require("../../models");
 const { NotFound } = require("http-errors");
 const mongoose = require("mongoose");
 
-const updateStatusContact = async (req, res, next) => {
+const updateSubscription = async (req, res, next) => {
   try {
-    console.log(req);
     const { contactId } = req.params;
-    const { favorite } = req.body;
+    const { subscription } = req.body;
+    console.log("req.params", req.params);
+    console.log(" subscription ", subscription);
     const isValidId = mongoose.Types.ObjectId.isValid(contactId);
     if (!isValidId)
       throw new NotFound(`Contact with id: ${contactId} not found`);
 
-    const result = await Contact.findByIdAndUpdate(
+    const result = await User.findByIdAndUpdate(
       contactId,
-      { favorite },
+      { subscription },
       { new: true }
     );
 
@@ -25,4 +26,4 @@ const updateStatusContact = async (req, res, next) => {
   }
 };
 
-module.exports = updateStatusContact;
+module.exports = updateSubscription;
