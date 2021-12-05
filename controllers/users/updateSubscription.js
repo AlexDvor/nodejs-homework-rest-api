@@ -4,16 +4,13 @@ const mongoose = require("mongoose");
 
 const updateSubscription = async (req, res, next) => {
   try {
-    const { contactId } = req.params;
+    const { userId } = req.params;
     const { subscription } = req.body;
-    console.log("req.params", req.params);
-    console.log(" subscription ", subscription);
-    const isValidId = mongoose.Types.ObjectId.isValid(contactId);
-    if (!isValidId)
-      throw new NotFound(`Contact with id: ${contactId} not found`);
+    const isValidId = mongoose.Types.ObjectId.isValid(userId);
+    if (!isValidId) throw new NotFound(`User with id: ${userId} not found`);
 
     const result = await User.findByIdAndUpdate(
-      contactId,
+      userId,
       { subscription },
       { new: true }
     );

@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 
 const updateStatusContact = async (req, res, next) => {
   try {
-    console.log(req);
     const { contactId } = req.params;
     const { favorite } = req.body;
     const isValidId = mongoose.Types.ObjectId.isValid(contactId);
