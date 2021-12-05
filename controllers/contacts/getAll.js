@@ -3,13 +3,21 @@ const { Contact } = require("../../models");
 const getAll = async (req, res, next) => {
   try {
     // const { _id } = req.user;
-    const { page = 1, limit = 20 } = req.query;
+    const { page = 1, limit = 20, favorite } = req.query;
     const skip = (page - 1) * limit;
-    const data = await Contact.find({}, "", {
+
+    if (Object.keys(req.query).length === 0) {
+      const data = await Contact.find({}, "", {
+        skip,
+        limit: Number(limit),
+      });
+      res.json(data);
+    }
+
+    const data = await Contact.find({ favorite }, "", {
       skip,
       limit: Number(limit),
     });
-
     res.json(data);
   } catch (error) {
     next(error);
