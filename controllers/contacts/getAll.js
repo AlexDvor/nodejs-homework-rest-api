@@ -5,7 +5,7 @@ const getAll = async (req, res, next) => {
     const { page = 1, limit = 20, favorite = "" } = req.query;
     const skip = (page - 1) * limit;
 
-    if (favorite !== "") {
+    if (favorite === "true" || favorite === "false") {
       const data = await Contact.find({ favorite }, "", {
         skip,
         limit: Number(limit),
