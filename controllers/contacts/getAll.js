@@ -12,6 +12,7 @@ const getAll = async (req, res, next) => {
         limit: Number(limit),
       });
       res.json(data);
+      return;
     }
 
     const data = await Contact.find({ favorite }, "", {
