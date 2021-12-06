@@ -1,5 +1,6 @@
 const { Contact } = require("../../models");
 const { NotFound } = require("http-errors");
+const mongoose = require("mongoose");
 
 const updateStatusContact = async (req, res, next) => {
   try {
