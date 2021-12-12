@@ -1,7 +1,7 @@
 const { User } = require("../../models");
 const path = require("path");
 const fs = require("fs/promises");
-const resizeUserAvatar = require("../../helpers/resizeUserAvatar ");
+const resizeUserAvatar = require("../../helpers/resizeUserAvatar");
 const avatarsDir = path.join(__dirname, "../../", "public", "avatars");
 
 const updateAvatar = async (req, res) => {
