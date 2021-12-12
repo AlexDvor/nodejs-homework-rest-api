@@ -13,8 +13,6 @@ const updateAvatar = async (req, res) => {
     const resultUpload = path.join(avatarsDir, imageName);
     await fs.rename(tempUpload, resultUpload);
     await resizeUserAvatar(resultUpload);
-
-    //
     const avatarURL = path.join("public", "avatars", imageName);
     await User.findByIdAndUpdate(req.user._id, { avatarURL });
     res.json({ avatarURL });
