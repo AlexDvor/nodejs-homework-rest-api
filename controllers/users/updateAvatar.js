@@ -1,8 +1,7 @@
 const { User } = require("../../models");
 const path = require("path");
 const fs = require("fs/promises");
-const Jimp = require("jimp");
-
+const resizeUserAvatar = require("../../helpers/resizeUserAvatar ");
 const avatarsDir = path.join(__dirname, "../../", "public", "avatars");
 
 const updateAvatar = async (req, res) => {
@@ -13,6 +12,9 @@ const updateAvatar = async (req, res) => {
   try {
     const resultUpload = path.join(avatarsDir, imageName);
     await fs.rename(tempUpload, resultUpload);
+    await resizeUserAvatar(resultUpload);
+
+    //
     const avatarURL = path.join("public", "avatars", imageName);
     await User.findByIdAndUpdate(req.user._id, { avatarURL });
     res.json({ avatarURL });
