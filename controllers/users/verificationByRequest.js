@@ -1,14 +1,16 @@
 const { User } = require("../../models");
-const { NotFound } = require("http-errors");
 const sendEmail = require("../../helpers/sendEmail");
+const { NotFound } = require("http-errors");
 
 const verificationByRequest = async (req, res, next) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email });
-    console.log("user", user);
+    if (!user) throw NotFound();
     if (user.verify) {
-      res.status(400).json({ message: "Verification has already been passed" });
+      return res
+        .status(400)
+        .json({ message: "Verification has already been passed" });
     }
     const mail = {
       to: email,
