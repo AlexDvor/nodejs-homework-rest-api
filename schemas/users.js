@@ -15,4 +15,13 @@ const subJoiSchema = Joi.object({
   subscription: Joi.string().required(),
 });
 
-module.exports = { registerJoiSchema, loginJoiSchema, subJoiSchema };
+const emailJoiSchema = Joi.object({
+  email: Joi.string().required(),
+});
+
+module.exports = {
+  registerJoiSchema,
+  loginJoiSchema,
+  subJoiSchema,
+  emailJoiSchema,
+};
